@@ -25,6 +25,8 @@ ynh_add_nginx_config () {
     local others_var=${1:-}
     ynh_backup_if_checksum_is_different --file="$finalnginxconf"
     cp ../conf/nginx.conf "$finalnginxconf"
+    ynh_declare_cmd_for_remove "nginx_config" "ynh_remove_nginx_config"
+    ynh_declare_cmd_for_backup "nginx_config" "ynh_backup_nginx_config"
 
     # To avoid a break by set -u, use a void substitution ${var:-}. If the variable is not set, it's simply set with an empty variable.
     # Substitute in a nginx config file only if the variable is not empty
@@ -77,4 +79,8 @@ ynh_add_nginx_config () {
 ynh_remove_nginx_config () {
     ynh_secure_remove --file="/etc/nginx/conf.d/$domain.d/$app.conf"
     ynh_systemd_action --service_name=nginx --action=reload
+}
+
+ynh_backup_nginx_config () {
+    ynh_backup "/etc/nginx/conf.d/$domain.d/$app.conf"
 }

@@ -511,3 +511,43 @@ ynh_check_app_version_changed () {
     fi
     echo $return_value
 }
+
+ynh_declare_cmd_for_remove () {
+    local id="$1"
+    local cmd="$2"
+
+    cat << EOF >> /etc/yunohost/apps/$app/remove.yml
+- step: $id
+  cmd: $cmd
+EOF
+}
+
+ynh_declare_file_for_remove () {
+    local id="$1"
+    local file="$2"
+
+    cat << EOF >> /etc/yunohost/apps/$app/remove.yml
+- step: $id
+  file: $file
+EOF
+}
+
+ynh_declare_cmd_for_backup () {
+    local id="$1"
+    local cmd="$2"
+
+    cat << EOF >> /etc/yunohost/apps/$app/backup.yml
+- step: $id
+  cmd: $cmd
+EOF
+}
+
+ynh_declare_file_for_backup () {
+    local id="$1"
+    local file="$2"
+
+    cat << EOF >> /etc/yunohost/apps/$app/backup.yml
+- step: $id
+  file: $file
+EOF
+}
