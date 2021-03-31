@@ -388,6 +388,39 @@ user:
                                 pattern: *pattern_username
                         key:
                             help: The key to be removed
+        adminpanel:
+            subcategory_help: Manage Admin Panel access
+            actions:
+
+                ### user_adminpanel_allow()
+                allow:
+                    action_help: Allow user to access Yunohost Admin Panel
+                    api: POST /users/adminpanel/allow
+                    arguments:
+                        username:
+                            help: Username of the user
+                            extra:
+                                pattern: *pattern_username
+
+                ### user_adminpanel_disallow()
+                disallow:
+                    action_help: Disallow user to access Yunohost Admin Panel
+                    api: POST /users/adminpanel/disallow
+                    arguments:
+                        username:
+                            help: Username of the user
+                            extra:
+                                pattern: *pattern_username
+
+                ### user_adminpanel_status()
+                status:
+                    action_help: Show user access to Yunohost Admin Panel
+                    api: GET /users/adminpanel/status
+                    arguments:
+                        username:
+                            help: Username of the user
+                            extra:
+                                pattern: *pattern_username
 
 #############################
 #          Domain           #
