@@ -111,3 +111,14 @@ depends_children:
         label: "SFTP"
         showTile: "FALSE"
         isProtected: "TRUE"
+    cn=adminpanel.main,ou=permission:
+        cn: adminpanel.main
+        gidNumber: "5005"
+        objectClass:
+            - posixGroup
+            - permissionYnh
+        groupPermission: []
+        authHeader: "FALSE"
+        label: "Admin Panel Access"
+        showTile: "FALSE"
+        isProtected: "TRUE"
